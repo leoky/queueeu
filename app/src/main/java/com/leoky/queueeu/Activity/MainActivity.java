@@ -1,4 +1,4 @@
-package com.leoky.queueeu;
+package com.leoky.queueeu.Activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,6 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.leoky.queueeu.Fragment.HistoryFrag;
+import com.leoky.queueeu.Fragment.HomeFrag;
+import com.leoky.queueeu.Fragment.ListFrag;
+import com.leoky.queueeu.R;
+import com.leoky.queueeu.Fragment.SettingFrag;
 import com.leoky.queueeu.helper.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity {

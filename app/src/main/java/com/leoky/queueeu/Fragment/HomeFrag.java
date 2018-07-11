@@ -1,4 +1,4 @@
-package com.leoky.queueeu;
+package com.leoky.queueeu.Fragment;
 
 
 import android.os.Bundle;
@@ -7,19 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.leoky.queueeu.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListFrag extends Fragment {
+public class HomeFrag extends Fragment {
 
 
-    public static ListFrag newInstance() {
+    public static HomeFrag newInstance() {
         // Required empty public constructor
 
         Bundle args = new Bundle();
 
-        ListFrag fragment = new ListFrag();
+        HomeFrag fragment = new HomeFrag();
         fragment.setArguments(args);
         return fragment;
     }
@@ -29,7 +31,7 @@ public class ListFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
 }
