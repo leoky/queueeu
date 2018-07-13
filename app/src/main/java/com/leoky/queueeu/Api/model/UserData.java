@@ -1,8 +1,6 @@
 package com.leoky.queueeu.Api.model;
 
-import java.util.Date;
 
-//@Entity(tableName = "userData")
 public class UserData {
     private String _id;
     private String name;
@@ -12,8 +10,9 @@ public class UserData {
     private String phone;
     private String gender;
     private String dob;
+    private String error;
 
-    public UserData(String _id, String name, String email, String password, String photo, String phone, String gender, String dob) {
+    public UserData(String _id, String name, String email, String password, String photo, String phone, String gender, String dob, String error) {
         this._id = _id;
         this.name = name;
         this.email = email;
@@ -22,6 +21,7 @@ public class UserData {
         this.phone = phone;
         this.gender = gender;
         this.dob = dob;
+        this.error = error;
     }
 
     public String get_id() {
@@ -86,5 +86,13 @@ public class UserData {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

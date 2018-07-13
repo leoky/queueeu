@@ -40,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         userService = ApiService.getClient().create(UserService.class);
         sp =  new SessionManager(this);
 
-        if(sp.isLogin()){
-            Intent i = new Intent(this,MainActivity.class);
-            startActivity(i);
-            finish();
-        }
+//        if(sp.isLogin()){
+//            Intent i = new Intent(this,MainActivity.class);
+//            startActivity(i);
+//            finish();
+//        }
 
         loginuser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +69,19 @@ public class LoginActivity extends AppCompatActivity {
         callUser.enqueue(new Callback<UserData>() {
             @Override
             public void onResponse(Call<UserData> call, Response<UserData> response) {
-//                UserData u = response.body();
                 UserData u = response.body();
-                if(u !=null){
-                    sp.createUserSession(u.get_id(),u.getEmail(),u.getName(),u.getPassword());
-                    Intent i = new Intent(getApplication(),MainActivity.class);
-                    startActivity(i);
+                if( u!=null) {
+                    if (u.getError()==null) {
+                        sp.createUserSession(u.get_id(), u.getEmail(), u.getName(), u.getPassword());
+                        Intent i = new Intent(getApplication(), MainActivity.class);
+                        startActivity(i);
+                        loading.dismiss();
+                        finish();
+                    } else {
+                        loading.dismiss();
+                    }
+                }else{
                     loading.dismiss();
-                    finish();
                 }
             }
 
