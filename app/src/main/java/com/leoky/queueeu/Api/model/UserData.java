@@ -11,9 +11,9 @@ public class UserData {
     private String photo;
     private String phone;
     private String gender;
-    private Date dob;
+    private String dob;
 
-    public UserData(String _id, String name, String email, String password, String photo, String phone, String gender, Date dob) {
+    public UserData(String _id, String name, String email, String password, String photo, String phone, String gender, String dob) {
         this._id = _id;
         this.name = name;
         this.email = email;
@@ -25,7 +25,6 @@ public class UserData {
     }
 
     public String get_id() {
-
         return _id;
     }
 
@@ -81,11 +80,11 @@ public class UserData {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 }
