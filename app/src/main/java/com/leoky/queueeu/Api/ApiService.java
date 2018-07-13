@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
-    private static String baseUrl = "http://queueee.herokuapp.com/";
+    private static String baseUrl = "http://queueee.herokuapp.com/users/";
     private static Retrofit retrofit = null;
 
     private static Gson gson = new GsonBuilder()

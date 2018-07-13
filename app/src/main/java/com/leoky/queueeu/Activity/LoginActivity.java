@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button loginuser;
+    Button loginuser,register;
     EditText email,password;
 
     private UserService userService;
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginuser=findViewById(R.id.loginuser);
+        register=findViewById(R.id.register);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
 
@@ -52,10 +53,18 @@ public class LoginActivity extends AppCompatActivity {
                 requestLogin();
             }
         });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplication(),RegisterActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void requestLogin(){
-        Call<UserData> callUser = userService.loginRequest(email.getText().toString(),password.getText().toString());
+        Call<UserData> callUser = userService.userLogin(email.getText().toString(),password.getText().toString());
 
         callUser.enqueue(new Callback<UserData>() {
             @Override
@@ -63,8 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 //                UserData u = response.body();
                 UserData u = response.body();
                 if(u !=null){
-                    sp.createUserSession(u.getId(),u.getEmail(),u.getName(),u.getPassword(),u.getPhoto(),u.getDob(),u.getPhone(),u.getGender(),
-                            u.getClinic().getClinic_name(),u.getClinic().getLocation(),u.getClinic().getEstimate(),u.getClinic().getStatus());
+                    sp.createUserSession(u.get_id(),u.getEmail(),u.getName(),u.getPassword());
                     Intent i = new Intent(getApplication(),MainActivity.class);
                     startActivity(i);
                     loading.dismiss();

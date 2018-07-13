@@ -4,45 +4,33 @@ import java.util.Date;
 
 //@Entity(tableName = "userData")
 public class UserData {
-//    @SerializedName("id")
     private String _id;
-//    @SerializedName("name")
     private String name;
-//    @SerializedName("email")
     private String email;
-//    @SerializedName("password")
     private String password;
-//    @SerializedName("photo")
     private String photo;
-//    @SerializedName("phone")
     private String phone;
-//    @SerializedName("category")
-    private String category;
-//    @SerializedName("gender")
     private String gender;
-//    @SerializedName("dob")
     private Date dob;
-    private Clinic clinic;
 
-    public UserData(String id, String name, String email, String password, String photo, Date dob, String phone, String category, String gender, Clinic clinic) {
-        this._id = id;
+    public UserData(String _id, String name, String email, String password, String photo, String phone, String gender, Date dob) {
+        this._id = _id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.photo = photo;
         this.phone = phone;
-        this.category = category;
         this.gender = gender;
         this.dob = dob;
-        this.clinic = clinic;
     }
 
-    public String getId() {
+    public String get_id() {
+
         return _id;
     }
 
-    public void setId(String id) {
-        this._id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -85,14 +73,6 @@ public class UserData {
         this.phone = phone;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -107,13 +87,5 @@ public class UserData {
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public Clinic getClinic() {
-        return clinic;
-    }
-
-    public void setClinic(Clinic clinic) {
-        this.clinic = clinic;
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="colorPrimary">#e67e22</color>
+    <color name="colorPrimary">#1ba5a5</color>
     <color name="colorPrimaryDark">#219390</color>
-    <color name="colorAccent">#FFF</color>
+    <color name="colorAccent">#f19b22</color>
 
     <color name="colorLinkText">#2980b9</color>
     <color name="colorNoLinkText">#bebebf</color>
-    <color name="colorTextNegative">#d80707</color>
+    <color name="colorNegative">#d80707</color>
+    <color name="colorBtnEnable">#00e431</color>
+    <color name="colorBtnDisable">#3300e431</color>
 </resources>

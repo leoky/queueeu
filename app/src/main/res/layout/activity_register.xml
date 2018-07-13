@@ -6,31 +6,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#27ae60"
-    tools:context=".Activity.LoginActivity">
+    tools:context=".Activity.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#FFF"
         android:padding="20dp"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login as user"
+            android:text="Register"
             android:textSize="25sp"
             android:textColor="#2c3e50"
-            android:paddingBottom="30dp"
-            android:paddingTop="30dp"
             android:textStyle="bold"
             android:layout_margin="10dp"
             android:textAlignment="center"/>
 
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username/Email"
+            android:text="Username"
+            android:textColor="#2c3e50"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
             android:textColor="#2c3e50"/>
 
         <EditText
@@ -38,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -51,23 +66,41 @@
             android:layout_height="wrap_content"
             android:text=""/>
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:background="#e67e22"
-            android:textColor="#FFF"
-            android:layout_marginTop="30dp"
-            android:id="@+id/loginuser"/>
+            android:text="Confirm password"
+            android:textColor="#2c3e50"/>
+
+        <EditText
+            android:id="@+id/confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textColor="#2c3e50"/>
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+
+
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
             android:background="#e67e22"
             android:textColor="#FFF"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="60dp"
-            android:id="@+id/register"/>
+            android:id="@+id/loginuser"/>
     </LinearLayout>
 
 
