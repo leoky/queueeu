@@ -70,18 +70,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserData> call, Response<UserData> response) {
                 UserData u = response.body();
+                boolean isSuccess= false;
                 if( u!=null) {
-                    if (u.getError()==null) {
+                    if (u.getError() == null) {
                         sp.createUserSession(u.get_id(), u.getEmail(), u.getName(), u.getPassword());
                         Intent i = new Intent(getApplication(), MainActivity.class);
                         startActivity(i);
-                        loading.dismiss();
-                        finish();
-                    } else {
-                        loading.dismiss();
+                        isSuccess= true;
                     }
-                }else{
-                    loading.dismiss();
+                }
+                loading.dismiss();
+                if(isSuccess){
+                    finish();
                 }
             }
 
