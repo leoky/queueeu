@@ -5,104 +5,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#27ae60"
     tools:context=".Activity.RegisterActivity">
 
-    <LinearLayout
+    <!--private String _id;-->
+    <!--private String name;-->
+    <!--private String email;-->
+    <!--private String password;-->
+    <!--private String photo;-->
+    <!--private String phone;-->
+    <!--private String gender;-->
+    <!--private String dob;-->
+    <!--private String error;-->
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFF"
-        android:padding="20dp"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
-        <TextView
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:textSize="25sp"
-            android:textColor="#2c3e50"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:textAlignment="center"/>
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="25sp"
+                android:textColor="#2c3e50"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#c0392b"
+                android:text=""/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ID KTP"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/ktp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/confirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textColor="#2c3e50"/>
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
 
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:background="@drawable/custom_button_orange"
+                android:textColor="#FFF"
+                android:layout_marginTop="30dp"
+                android:id="@+id/registeruser"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:background="@drawable/custom_button_grey"
+                android:textColor="#FFF"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="60dp"
+                android:id="@+id/loginuser"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:textColor="#2c3e50"/>
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="#2c3e50"/>
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:textColor="#2c3e50"/>
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Confirm password"
-            android:textColor="#2c3e50"/>
-
-        <EditText
-            android:id="@+id/confirmpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textColor="#2c3e50"/>
-
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:background="#e67e22"
-            android:textColor="#FFF"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="60dp"
-            android:id="@+id/loginuser"/>
-    </LinearLayout>
-
-
+    </ScrollView>
 
 </LinearLayout>
