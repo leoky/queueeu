@@ -14,7 +14,7 @@ public interface UserService {
 
 
     @FormUrlEncoded
-    @POST("add")
+    @POST("users/add")
     Call<UserData> registerUser (
             @Field("name") String name,
             @Field("email") String email,
