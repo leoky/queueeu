@@ -8,9 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
 import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.R;
+import com.leoky.queueeu.Session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         confirm=findViewById(R.id.confirmPassword);
         phone=findViewById(R.id.phone);
+
+        userService = ApiService.getClient().create(UserService.class);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
