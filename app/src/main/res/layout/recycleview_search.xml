@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/vsmall_hor_padd"
+    android:id="@+id/cl"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgNow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/profile"
+        android:layout_marginBottom="@dimen/vsmall_ver_mar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvName"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#000"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/imgNow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="@dimen/vsmall_hor_mar"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:text="@string/tv_name"/>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/vsmall_ver_mar"
+        android:text="jln adam adam adamam amdajsdfj skjfkjsjfkskajfjkasjfsjfkslfjslfj"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

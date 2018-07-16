@@ -30,8 +30,8 @@ public class RVList {
             super(v);
             v.setOnClickListener(this);
             tvName = (TextView)v.findViewById(R.id.tvName);
-            tvNote = (TextView)v.findViewById(R.id.tvNote);
-            tvNumb = (TextView)v.findViewById(R.id.tvNumber);
+//            tvNote = (TextView)v.findViewById(R.id.tvNote);
+//            tvNumb = (TextView)v.findViewById(R.id.tvNumber);
         }
 
         @Override

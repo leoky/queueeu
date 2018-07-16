@@ -1,6 +1,4 @@
 <resources>
-
-
     <!-- Base application theme. -->
     <style name="AppThemeNoAB" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
