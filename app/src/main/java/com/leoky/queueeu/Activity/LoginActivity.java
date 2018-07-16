@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
@@ -58,8 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplication(),RegisterActivity.class);
-                startActivity(i);
+                startActivity( new Intent(getApplication(),RegisterActivity.class));
             }
         });
     }
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserData> call, Throwable t) {
                 loading.dismiss();
-                System.out.println("erorr "+t);
+                Toast.makeText(LoginActivity.this, " "+t, Toast.LENGTH_SHORT).show();
             }
         });
     }

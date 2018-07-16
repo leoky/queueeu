@@ -12,12 +12,10 @@ import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
 import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.R;
-import com.leoky.queueeu.Session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppThemeNoAB);
         setContentView(R.layout.activity_register);
+
         login = findViewById(R.id.loginuser);
         register = findViewById(R.id.registeruser);
         error = findViewById(R.id.error);
@@ -46,8 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplication(),LoginActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -71,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if( u!=null) {
                             if (u.getError() == null) {
                                 isSuccess= true;
+                                finish();
                             }
                         }
                         if(isSuccess){

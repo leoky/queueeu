@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.ab_search, menu);
 
-        MenuItem item = menu.findItem(R.id.mi_search);
+        MenuItem item = menu.findItem(R.id.sv);
         SearchView searchView = (SearchView) item.getActionView();
 
         searchView.setFocusable(true);
