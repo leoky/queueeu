@@ -15,6 +15,8 @@ import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.R;
 import com.leoky.queueeu.Session.SessionManager;
 
+import java.net.SocketTimeoutException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         sp =  new SessionManager(this);
 
 //        if(sp.isLogin()){
-//            Intent i = new Intent(this,MainActivity.class);
-//            startActivity(i);
-//            finish();
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
+            finish();
 //        }
 
         loginuser.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<UserData> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(LoginActivity.this, " "+t, Toast.LENGTH_SHORT).show();
+                if(t instanceof SocketTimeoutException){
+                    requestLogin();
+                }
             }
         });
     }

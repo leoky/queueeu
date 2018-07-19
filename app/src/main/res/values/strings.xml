@@ -117,5 +117,6 @@
     <string name="tv_time">Estimate Time</string>
     <string name="tv_phone">Phone</string>
     <string name="btn_logout">log out</string>
+    <string name="tv_error_not_found">Not Found</string>
 
 </resources>

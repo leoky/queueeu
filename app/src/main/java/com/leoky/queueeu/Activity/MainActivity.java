@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.leoky.queueeu.Api.ApiService;
+import com.leoky.queueeu.Api.model.UserData;
+import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.Fragment.HistoryFrag;
 import com.leoky.queueeu.Fragment.HomeFrag;
 import com.leoky.queueeu.Fragment.ListFrag;
@@ -17,12 +20,18 @@ import com.leoky.queueeu.helper.BottomNavigationViewHelper;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+
+    public static UserService userService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav);
+        bottomNavigationView = findViewById(R.id.nav);
+
+        //ini api
+        userService = ApiService.getClient().create(UserService.class);
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFrag(),HomeFrag.class.getSimpleName()).commit();

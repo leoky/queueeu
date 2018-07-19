@@ -35,7 +35,7 @@ public class HomeFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        v.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.sv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), SearchActivity.class));

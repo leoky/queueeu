@@ -7,22 +7,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.SettingFrag">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:contentInsetStart="0dp"
-        android:id="@+id/toolbar">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/settings"
-            android:gravity="center_vertical"
-            android:textColor="#FFF"
-            android:textStyle="bold"
-            style="@style/Base.TextAppearance.AppCompat.Large"
-            android:textAlignment="center"/>
-    </android.support.v7.widget.Toolbar>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?android:attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--app:contentInsetStart="0dp"-->
+        <!--android:id="@+id/toolbar">-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/settings"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:textColor="#FFF"-->
+            <!--android:textStyle="bold"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Large"-->
+            <!--android:textAlignment="center"/>-->
+    <!--</android.support.v7.widget.Toolbar>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -176,89 +176,6 @@
                     android:text="Male"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/small_ver_padd"
-                android:background="@color/colorNoLinkText" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:gravity="center_vertical"
-                android:textAppearance="@style/Base.Theme.AppCompat.Dialog.Alert"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textStyle="bold"
-                android:textSize="23dp"
-                android:paddingLeft="@dimen/vsmall_hor_padd"
-                android:text="@string/tv_ClinicInfo"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorNoLinkText" />
-
-            <LinearLayout
-                android:id="@+id/llClinicName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_ClinicName"/>
-                <TextView
-                    android:id="@+id/tvCName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorNoLinkText"
-                    android:text="Klinik ABC"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_address"/>
-                <TextView
-                    android:id="@+id/tvLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorNoLinkText"
-                    android:text="Jl danau torara no 129 D samping bakery enak"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_time"/>
-                <TextView
-                    android:id="@+id/tvTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorLinkText"
-                    android:text="20 min"/>
-            </LinearLayout>
-
             <Button
                 android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
@@ -272,12 +189,6 @@
 
         </LinearLayout>
 
-
-
-
-
     </ScrollView>
-
-
 
 </LinearLayout>
