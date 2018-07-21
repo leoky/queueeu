@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".Activity.OnProgress">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ON PROGRESS"
+        android:textAlignment="center"
+        android:textSize="21sp"
+        android:paddingTop="@dimen/medium_ver_padd"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Please wait for your turn to meet your doctor"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DOCTOR DETAILS"
+        android:padding="30dp"
+        android:textSize="17sp"
+        android:textAlignment="center"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgNow"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:src="@drawable/profile"
+        android:layout_gravity="center"
+        app:civ_circle_background_color="#FFF"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#000"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dr. ricky"
+        android:textSize="17sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Klinik ABS no 102 R"
+        android:textSize="17sp"/>
+
+    <Button
+        android:id="@+id/btn_queuee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorNegative"
+        android:text="finish"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/small_ver_mar"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@android:color/white" />
+
+
+
+
+</LinearLayout>
