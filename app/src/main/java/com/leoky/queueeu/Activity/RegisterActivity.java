@@ -1,17 +1,15 @@
 package com.leoky.queueeu.Activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
-import com.leoky.queueeu.Api.service.UserService;
+import com.leoky.queueeu.Api.service.LoginService;
 import com.leoky.queueeu.R;
 
 import retrofit2.Call;
@@ -22,8 +20,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button register,login;
     TextView error;
-    EditText ktp,name,email,password,confirm,phone;
-    private UserService userService;
+    EditText name,email,password,confirm,phone;
+    private LoginService loginService;
 
 
     @Override
@@ -34,14 +32,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         login = findViewById(R.id.loginuser);
         register = findViewById(R.id.registeruser);
-
+        error = findViewById(R.id.error);
         name=findViewById(R.id.name);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         confirm=findViewById(R.id.confirmPassword);
         phone=findViewById(R.id.phone);
 
-        userService = ApiService.getClient().create(UserService.class);
+        loginService = ApiService.getClient().create(LoginService.class);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,46 +52,43 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                if(name==null||email==null||password==null||confirm==null||phone==null){
-                    Toast.makeText(RegisterActivity.this, "Jangan ada data yang kosong!",
-                            Toast.LENGTH_LONG).show();
+                String pass = password.getText().toString();
+                String confPass = confirm.getText().toString();
+                if(pass.equals(confPass)){
+                    setRegister(pass);
                 }
-                if(name==null&&email==null&&password==null&&confirm==null&&phone==null){
-                    Toast.makeText(RegisterActivity.this, "Jangan ada data yang kosong!",
-                            Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void setRegister(String pass){
+        Call<UserData> callUser = loginService.registerUser(
+                name.getText().toString(),
+                email.getText().toString(),
+                pass,
+                "gender",
+                phone.getText().toString(),
+                "dob",
+                "imgurl");
+        callUser.enqueue(new Callback<UserData>() {
+            @Override
+            public void onResponse(Call<UserData> call, Response<UserData> response) {
+                UserData u = response.body();
+                boolean isSuccess= false;
+                if( u!=null) {
+                    if (u.getError() == null) {
+                        isSuccess= true;
+                        finish();
+                    }
                 }
+                if(isSuccess){
+                    error.setText("success");
+                }
+            }
 
-                String nama=name.getText().toString();
-                String emailname=email.getText().toString();
-                String pass=password.getText().toString();
-                String telp=phone.getText().toString();
-
-                Call<UserData> callUser = userService.registerUser(nama,emailname,pass,"gender",telp,"dob","imgurl");
-                callUser.enqueue(new Callback<UserData>() {
-                    @Override
-                    public void onResponse(Call<UserData> call, Response<UserData> response) {
-                        UserData u = response.body();
-                        boolean isSuccess= false;
-                        if( u!=null) {
-                            if (u.getError() == null) {
-                                isSuccess= true;
-                                finish();
-                            }
-                        }
-                        if(isSuccess){
-                            error.setText("success");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<UserData> call, Throwable t) {
-                        error.setText("Error");
-                        System.out.println("erorr "+t);
-                    }
-                });
-
-
+            @Override
+            public void onFailure(Call<UserData> call, Throwable t) {
+                error.setText("Error");
+                System.out.println("erorr "+t);
             }
         });
     }

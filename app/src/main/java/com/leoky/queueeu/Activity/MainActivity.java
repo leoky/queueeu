@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.leoky.queueeu.Api.ApiService;
-import com.leoky.queueeu.Api.model.UserData;
+import com.leoky.queueeu.Api.service.LoginService;
 import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.Fragment.HistoryFrag;
 import com.leoky.queueeu.Fragment.HomeFrag;

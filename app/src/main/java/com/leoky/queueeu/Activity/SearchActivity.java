@@ -8,20 +8,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leoky.queueeu.Adapter.SearchAdapter;
-import com.leoky.queueeu.Api.model.Doctor;
 import com.leoky.queueeu.Api.model.RepoSearch;
 import com.leoky.queueeu.R;
 
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.logging.SocketHandler;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private ListView lvSearch;
     private ProgressBar pb;
     private TextView tvError;
+    private SearchView searchView;
 
     private SearchAdapter adapter;
     private RepoSearch repoSearch;
@@ -50,8 +47,11 @@ public class SearchActivity extends AppCompatActivity {
         lvSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                searchView.setFocusable(false);
                 Intent i = new Intent(SearchActivity.this,QueueDetailActivity.class);
                 i.putExtra(QueueDetailActivity.KEY_NAME,repoSearch.getDoctor().get(position).getName());
+                i.putExtra(QueueDetailActivity.KEY_ID,repoSearch.getDoctor().get(position).get_id());
+                i.putExtra(QueueDetailActivity.KEY_MODE,QueueDetailActivity.MODE_QUEUE);
                 startActivity(i);
             }
         });
@@ -68,7 +68,7 @@ public class SearchActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.ab_search, menu);
 
         MenuItem item = menu.findItem(R.id.sv);
-        SearchView searchView = (SearchView) item.getActionView();
+        searchView = (SearchView) item.getActionView();
 
         searchView.setFocusable(true);
         searchView.setIconified(false);
@@ -85,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
                 tvError.setVisibility(View.GONE);
                 if(newText.length()>=2){
                     search(newText);
-                }else if(newText.length() == 0){
+                }else if(newText.length() == 0 && adapter!=null){
                     adapter.clear();
                     adapter.notifyDataSetChanged();
                 }

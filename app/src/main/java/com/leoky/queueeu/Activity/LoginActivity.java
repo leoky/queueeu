@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
-import com.leoky.queueeu.Api.service.UserService;
+import com.leoky.queueeu.Api.service.LoginService;
 import com.leoky.queueeu.R;
 import com.leoky.queueeu.Session.SessionManager;
 
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginuser,register;
     EditText email,password;
 
-    private UserService userService;
+    private LoginService loginService;
     private ProgressDialog loading;
     private SessionManager sp;
 
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
 
-        userService = ApiService.getClient().create(UserService.class);
+        loginService = ApiService.getClient().create(LoginService.class);
         sp =  new SessionManager(this);
 
         if(sp.isLogin()){
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void requestLogin(){
-        Call<UserData> callUser = userService.userLogin(email.getText().toString(),password.getText().toString());
+        Call<UserData> callUser = loginService.userLogin(email.getText().toString(),password.getText().toString());
 
         callUser.enqueue(new Callback<UserData>() {
             @Override

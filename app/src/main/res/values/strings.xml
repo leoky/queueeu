@@ -102,7 +102,7 @@
     <!--for menu-->
     <string name="btn_done">done</string>
     <string name="btn_cancel">cancel</string>
-    <string name="btn_queuee">queuee now</string>
+    <string name="btn_queue">queue now</string>
     <string name="tv_note">Note</string>
     <string name="tv_problem">Problem :</string>
     <string name="settings">Settings</string>
@@ -122,5 +122,8 @@
     <string name="tv_phone">Phone</string>
     <string name="btn_logout">log out</string>
     <string name="tv_error_not_found">Not Found</string>
+    <string name="tv_ETA">ETA</string>
+    <string name="tv_total_queue">Total Queue</string>
+    <string name="tv_on_progress">On progress</string>
 
 </resources>
