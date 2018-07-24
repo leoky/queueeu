@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.leoky.queueeu.Api.model.Queue;
 import com.leoky.queueeu.R;
 
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
 public class RVOrder extends RecyclerView.Adapter<RVOrder.ViewHolder> {
     private ClickListener clickListener = null;
     private Activity activity;
-    private List<String> list;
+    private List<Queue> list;
 
-    public RVOrder(List<String> list, Activity activity){
+    public RVOrder(List<Queue> list, Activity activity){
         this.activity = activity;
         this.list = list;
     }
@@ -32,7 +33,8 @@ public class RVOrder extends RecyclerView.Adapter<RVOrder.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvName.setText(list.get(position));
+        holder.tvName.setText(list.get(position).getDoctor().getName());
+        holder.tvStatus.setText(list.get(position).getStatus());
     }
 
     @Override
@@ -50,13 +52,12 @@ public class RVOrder extends RecyclerView.Adapter<RVOrder.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView tvName,tvNumb,tvNote;
+        public TextView tvName,tvStatus;
         public ViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
-            tvName = (TextView)v.findViewById(R.id.tvName);
-//            tvNote = (TextView)v.findViewById(R.id.tvNote);
-//            tvNumb = (TextView)v.findViewById(R.id.tvNumber);
+            tvName = v.findViewById(R.id.tvName);
+            tvStatus = v.findViewById(R.id.tvStatus);
         }
 
         @Override

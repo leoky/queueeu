@@ -4,7 +4,6 @@ package com.leoky.queueeu.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,9 +18,15 @@ import android.widget.Toast;
 import com.leoky.queueeu.Activity.MainActivity;
 import com.leoky.queueeu.Activity.QueueDetailActivity;
 import com.leoky.queueeu.Adapter.RVOrder;
+import com.leoky.queueeu.Api.model.Queue;
+import com.leoky.queueeu.Api.model.RepoQueue;
 import com.leoky.queueeu.R;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -32,7 +37,7 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
     private ProgressBar pb;
 
     private RVOrder myAdapter;
-    List<String> lists;
+    List<Queue> lists;
 
     public static ListFrag newInstance() {
         // Required empty public constructor
@@ -58,6 +63,7 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
         setHasOptionsMenu(true);
         initId(v);
         pb.setVisibility(View.VISIBLE);
+        getData();
         return v;
     }
     @Override
@@ -75,7 +81,7 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
     private void initRecyclerView(){
         //recycle view
         rv.setHasFixedSize(true);
-        rv.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+//        rv.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
 
         //use linear layout manager
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -88,12 +94,30 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
     @Override
     public void itemClicked(View view, int position) {
         Intent i = new Intent(getContext(), QueueDetailActivity.class);
-//        i.putExtra(QueueDetailActivity.KEY_NAME,repoSearch.getDoctor().get(position).getName());
-//        i.putExtra(QueueDetailActivity.KEY_ID,repoSearch.getDoctor().get(position).get_id());
-//        i.putExtra(QueueDetailActivity.KEY_MODE,QueueDetailActivity.MODE_ON_QUEUE);
+        i.putExtra(QueueDetailActivity.KEY_NAME,lists.get(position).getDoctor().getName());
+        i.putExtra(QueueDetailActivity.KEY_DOCTOR_ID,lists.get(position).getDoctor().getId());
+        i.putExtra(QueueDetailActivity.KEY_QUEUE_ID,lists.get(position).get_id());
+        i.putExtra(QueueDetailActivity.KEY_MODE,QueueDetailActivity.MODE_ON_QUEUE);
         startActivity(i);
     }
     private void getData(){
+        Call<RepoQueue> call = MainActivity.userService.getQueue(MainActivity.sp.getSpId());
+        call.enqueue(new Callback<RepoQueue>() {
+            @Override
+            public void onResponse(Call<RepoQueue> call, Response<RepoQueue> response) {
+                RepoQueue u  = response.body();
+                lists = u.getQueue();
+                if(lists!=null){
+                    initRecyclerView();
+                }
+                pb.setVisibility(View.GONE);
+            }
 
+            @Override
+            public void onFailure(Call<RepoQueue> call, Throwable t) {
+                Toast.makeText(getContext(),""+t,Toast.LENGTH_SHORT).show();
+                pb.setVisibility(View.GONE);
+            }
+        });
     }
 }

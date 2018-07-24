@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Activity.RegisterActivity">
 
-    <!--private String _id;-->
+    <!--private String id;-->
     <!--private String name;-->
     <!--private String email;-->
     <!--private String password;-->

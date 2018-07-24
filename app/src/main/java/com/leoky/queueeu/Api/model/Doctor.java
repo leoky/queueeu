@@ -1,7 +1,7 @@
 package com.leoky.queueeu.Api.model;
 
 public class Doctor {
-    private String _id;
+    private String id;
     private String name;
     private String photo;
     private String phone;
@@ -10,8 +10,8 @@ public class Doctor {
     private Clinic clinic;
     private String error;
 
-    public Doctor(String _id, String name, String photo, String phone, String category, Clinic clinic, String error) {
-        this._id = _id;
+    public Doctor(String id, String name, String photo, String phone, String category, Clinic clinic, String error) {
+        this.id = id;
         this.name = name;
         this.photo = photo;
         this.phone = phone;
@@ -20,12 +20,12 @@ public class Doctor {
         this.error = error;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

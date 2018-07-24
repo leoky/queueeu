@@ -46,6 +46,7 @@ public class SettingFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.settings);
 
         tvName =v.findViewById(R.id.tvName);
         tvEmail =v.findViewById(R.id.tvEmail);

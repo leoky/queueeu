@@ -21,8 +21,9 @@ import retrofit2.Response;
 public class QueueDetailActivity extends AppCompatActivity {
 
     public static String KEY_NAME = "KEY_NAME";
-    public static String KEY_ID = "KEY_ID";
+    public static String KEY_QUEUE_ID = "KEY_QUEUE_ID";
     public static String KEY_MODE = "KEY_MODE";
+    public static String KEY_DOCTOR_ID = "KEY_DOCTOR_ID";
     public static int MODE_QUEUE = 0;
     public static int MODE_ON_QUEUE = 1;
 
@@ -105,9 +106,8 @@ public class QueueDetailActivity extends AppCompatActivity {
     }
 
     private void getData(boolean isQueue){
-        Call<QueueDetail> call;
         if(isQueue){
-           call = MainActivity.userService.getQueueFrom(getIntent().getStringExtra(KEY_ID));
+            Call<QueueDetail> call = MainActivity.userService.getQueueFrom(getIntent().getStringExtra(KEY_DOCTOR_ID));
             call.enqueue(new Callback<QueueDetail>() {
                 @Override
                 public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
@@ -125,13 +125,15 @@ public class QueueDetailActivity extends AppCompatActivity {
                 }
             });
         }else {
-            call = MainActivity.userService.getQueueFrom(getIntent().getStringExtra(KEY_ID));
+            Call<QueueDetail> call = MainActivity.userService.getQueueNum(getIntent().getStringExtra(KEY_QUEUE_ID),
+                    getIntent().getStringExtra(KEY_DOCTOR_ID));
             call.enqueue(new Callback<QueueDetail>() {
                 @Override
                 public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
                     queueDetail = response.body();
                     if (queueDetail.getError() == null) {
                         updateView();
+                        getSupportActionBar().setSubtitle(queueDetail.getDoctor().getCategory());
                     }
 
                 }
@@ -145,10 +147,10 @@ public class QueueDetailActivity extends AppCompatActivity {
     }
     private void queue(){
         Call<QueueDetail> call = MainActivity.userService.setQueue(
-                "Jackie Chan",
-                "5b44de0164549c14813ff010",
+                MainActivity.sp.getSpName(),
+                MainActivity.sp.getSpId(),
                 queueDetail.getDoctor().getName(),
-                queueDetail.getDoctor().get_id(),
+                queueDetail.getDoctor().getId(),
                 editText.getText().toString()
         );
         call.enqueue(new Callback<QueueDetail>() {
@@ -171,6 +173,21 @@ public class QueueDetailActivity extends AppCompatActivity {
         });
     }
     private void cancel(){
+        Call<QueueDetail> call = MainActivity.userService.cancelQueue(queueDetail.getQueue_id(),MainActivity.sp.getSpName());
+        call.enqueue(new Callback<QueueDetail>() {
+            @Override
+            public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
+                if(response.isSuccessful()){
+                    loading.dismiss();
+                    finish();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<QueueDetail> call, Throwable t) {
+                Toast.makeText(QueueDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
+                loading.dismiss();
+            }
+        });
     }
 }
