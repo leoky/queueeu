@@ -111,6 +111,9 @@
     <string name="tv_name">Full Name</string>
     <string name="tv_email">Email</string>
     <string name="tv_password">Password</string>
+    <string name="tv_confirm_password">Confirm Password</string>
+    <string name="tv_current_password">Current Password</string>
+    <string name="tv_new_password">New Password</string>
     <string name="tv_date">Birth</string>
     <string name="tv_ClinicInfo">Clinic Info</string>
     <string name="tv_ClinicName">Clinic Name</string>

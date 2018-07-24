@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
 
@@ -30,4 +31,22 @@ public interface UserService {
     @FormUrlEncoded
     @POST("users/finddoctor/name")
     Call<RepoSearch> searchName(@Field("name") String name);
+
+    @FormUrlEncoded
+    @POST("users/update/email/{id}")
+    Call<UserData> updateEmail(@Path("id") String id,
+                               @Field("newEmail") String email);
+
+    @FormUrlEncoded
+    @POST("users/update/password/{id}")
+    Call<UserData> updatePassword(@Path("id") String id,
+                                  @Field("currentPassword") String pass,
+                                  @Field("newPassword") String newPass);
+
+    @FormUrlEncoded
+    @POST("users/update/phone/{id}")
+    Call<UserData> updatePhone(@Path("id") String id,
+                               @Field("newPhone") String phone);
+
+
 }

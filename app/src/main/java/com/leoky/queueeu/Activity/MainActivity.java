@@ -15,6 +15,7 @@ import com.leoky.queueeu.Fragment.HomeFrag;
 import com.leoky.queueeu.Fragment.ListFrag;
 import com.leoky.queueeu.R;
 import com.leoky.queueeu.Fragment.SettingFrag;
+import com.leoky.queueeu.Session.SessionManager;
 import com.leoky.queueeu.helper.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     public static UserService userService;
+    public static SessionManager sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         //ini api
         userService = ApiService.getClient().create(UserService.class);
+        sp = new SessionManager(this);
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFrag(),HomeFrag.class.getSimpleName()).commit();

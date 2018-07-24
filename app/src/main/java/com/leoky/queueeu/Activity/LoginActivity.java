@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppThemeNoAB);
         setContentView(R.layout.activity_login);
-
         loginuser=findViewById(R.id.loginuser);
         register=findViewById(R.id.register);
         email=findViewById(R.id.email);
@@ -44,11 +43,11 @@ public class LoginActivity extends AppCompatActivity {
         userService = ApiService.getClient().create(UserService.class);
         sp =  new SessionManager(this);
 
-//        if(sp.isLogin()){
+        if(sp.isLogin()){
             Intent i = new Intent(this,MainActivity.class);
             startActivity(i);
             finish();
-//        }
+        }
 
         loginuser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean isSuccess= false;
                 if( u!=null) {
                     if (u.getError() == null) {
-                        sp.createUserSession(u.get_id(), u.getEmail(), u.getName(), u.getPassword());
+                        sp.createUserSession(u.get_id(),u.getEmail(),u.getName(),u.getPhone(),u.getGender(),u.getPassword());
                         Intent i = new Intent(getApplication(), MainActivity.class);
                         startActivity(i);
                         isSuccess= true;

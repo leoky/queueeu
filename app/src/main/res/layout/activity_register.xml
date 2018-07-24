@@ -35,23 +35,8 @@
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#c0392b"
-                android:text=""/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ID KTP"
-                android:textColor="#2c3e50"/>
 
-            <EditText
-                android:id="@+id/ktp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

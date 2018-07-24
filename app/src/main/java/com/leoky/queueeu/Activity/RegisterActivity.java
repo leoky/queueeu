@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
@@ -33,8 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         login = findViewById(R.id.loginuser);
         register = findViewById(R.id.registeruser);
-        error = findViewById(R.id.error);
-        ktp=findViewById(R.id.ktp);
+
         name=findViewById(R.id.name);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
@@ -54,11 +54,19 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                String id = ktp.getText().toString();
+
+                if(name==null||email==null||password==null||confirm==null||phone==null){
+                    Toast.makeText(RegisterActivity.this, "Jangan ada data yang kosong!",
+                            Toast.LENGTH_LONG).show();
+                }
+                if(name==null&&email==null&&password==null&&confirm==null&&phone==null){
+                    Toast.makeText(RegisterActivity.this, "Jangan ada data yang kosong!",
+                            Toast.LENGTH_LONG).show();
+                }
+
                 String nama=name.getText().toString();
                 String emailname=email.getText().toString();
                 String pass=password.getText().toString();
-//                String confirmpass=confirm.getText().toString();
                 String telp=phone.getText().toString();
 
                 Call<UserData> callUser = userService.registerUser(nama,emailname,pass,"gender",telp,"dob","imgurl");

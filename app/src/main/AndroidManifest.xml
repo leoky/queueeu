@@ -25,7 +25,10 @@
         <activity android:name=".Activity.SearchActivity" />
         <activity android:name=".Activity.SearchDetailActivity" />
         <activity android:name=".Activity.QueueDetailActivity" />
-        <activity android:name=".Activity.OnProgress"></activity>
+        <activity android:name=".Activity.OnProgress" />
+        <activity android:name=".Activity.ChangeEmail" />
+        <activity android:name=".Activity.ChangePassword" />
+        <activity android:name=".Activity.ChangePhone"></activity>
     </application>
 
 </manifest>

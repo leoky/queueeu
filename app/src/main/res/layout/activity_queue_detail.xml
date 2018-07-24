@@ -5,225 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/small_hor_padd"
     tools:context=".Activity.QueueDetailActivity">
 
-
-    <ScrollView
+    <TextView
+        android:id="@+id/namedoctor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="@dimen/h2"
+        android:text="Dr. Davidson JR"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Queuee Doctor"
-                android:textStyle="bold"
-                android:textSize="@dimen/h1"
-                android:textAlignment="center"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgNow"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:src="@drawable/profile"
+        android:layout_gravity="center"
+        android:padding="@dimen/vsmall_hor_padd"
+        android:layout_marginTop="@dimen/vsmall_ver_mar"
+        android:layout_marginBottom="@dimen/vsmall_ver_mar"
+        app:civ_circle_background_color="#FFF"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#000"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgNow"
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:src="@drawable/profile"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_ver_mar"
-                android:layout_marginBottom="@dimen/vsmall_ver_mar"
-                app:civ_circle_background_color="#FFF"
-                app:civ_border_width="1dp"
-                app:civ_border_color="#000"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/h2"
+        android:text="Clinic information"/>
+    <TextView
+        android:id="@+id/clinicname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_name"/>
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ricky"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_email"/>
-                <TextView
-                    android:id="@+id/tvEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="rickymartin782@gmail.com"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="status"/>
-                <TextView
-                    android:id="@+id/tvPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Available"/>
-            </LinearLayout>
+        android:textSize="@dimen/h3"
+        android:text="Klinik Indah Bersama"/>
+    <TextView
+        android:id="@+id/doctorstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/h3"
+        android:text="Available / Open"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/vsmall_hor_mar"
+        android:textSize="@dimen/h2"
+        android:text="Waiting information"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_phone"/>
-                <TextView
-                    android:id="@+id/tvPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text=""/>
-            </LinearLayout>
+        android:textSize="@dimen/h3"
+        android:text="Queuee waiting"/>
+    <TextView
+        android:id="@+id/totalqueue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/h1"
+        android:text="13"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/vsmall_hor_mar"
+        android:textSize="@dimen/h2"
+        android:text="Notes"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_date"/>
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="01-01-2001"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_gender"/>
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="#bebebe"
-                    android:text="Male"/>
-            </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="insert note here"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/small_ver_padd"
-                android:background="@color/colorNoLinkText" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:gravity="center_vertical"
-                android:textAppearance="@style/Base.Theme.AppCompat.Dialog.Alert"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textStyle="bold"
-                android:textSize="23dp"
-                android:paddingLeft="@dimen/vsmall_hor_padd"
-                android:text="@string/tv_ClinicInfo"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorNoLinkText" />
-
-            <LinearLayout
-                android:id="@+id/llClinicName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_ClinicName"/>
-                <TextView
-                    android:id="@+id/tvCName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorNoLinkText"
-                    android:text="Klinik ABC"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MyTheme_SettingBarStyle">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:text="@string/tv_address"/>
-                <TextView
-                    android:id="@+id/tvLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorNoLinkText"
-                    android:text="Jl danau torara no 129 D samping bakery enak"/>
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/btn_queuee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorNegative"
-                android:text="@string/btn_queuee"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/small_ver_mar"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:textColor="@android:color/white" />
-
-
-        </LinearLayout>
-
-    </ScrollView>
+    <Button
+        android:id="@+id/btn_queuee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="QUEUEE NOW"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/small_ver_mar"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>
