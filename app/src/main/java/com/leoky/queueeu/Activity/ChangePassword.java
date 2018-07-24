@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
+import com.leoky.queueeu.Api.service.LoginService;
 import com.leoky.queueeu.R;
 
 import retrofit2.Call;
@@ -21,6 +23,7 @@ public class ChangePassword extends AppCompatActivity {
     EditText editText,editText2,editText3;
 
     private ProgressDialog loading;
+    LoginService loginService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,8 @@ public class ChangePassword extends AppCompatActivity {
         editText2 = findViewById(R.id.tvEditText2);
         editText3 = findViewById(R.id.tvEditText3);
         final Button btnSave = findViewById(R.id.btnSave);
+
+        loginService = ApiService.getClient().create(LoginService.class);
 
         editText3.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,7 +77,7 @@ public class ChangePassword extends AppCompatActivity {
     }
 
     private void updateData(){
-        Call<UserData> callUser = MainActivity.userService.updatePassword(MainActivity.sp.getSpId(),editText.getText().toString(),editText2.getText().toString());
+        Call<UserData> callUser = loginService.updatePassword(MainActivity.sp.getSpId(),editText.getText().toString(),editText2.getText().toString());
         callUser.enqueue(new Callback<UserData>() {
             @Override
             public void onResponse(retrofit2.Call<UserData> call, Response<UserData> response) {

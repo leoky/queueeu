@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.leoky.queueeu.Api.ApiService;
 import com.leoky.queueeu.Api.model.UserData;
+import com.leoky.queueeu.Api.service.LoginService;
+import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.R;
 
 import retrofit2.Callback;
@@ -23,7 +26,7 @@ public class ChangePhone extends AppCompatActivity {
     private String data=null;
 
     private ProgressDialog loading;
-
+    private LoginService loginService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class ChangePhone extends AppCompatActivity {
 
         editText = findViewById(R.id.tvEditText);
         btnSave = findViewById(R.id.btnSave);
-
+        loginService = ApiService.getClient().create(LoginService.class);
         if (MainActivity.sp != null) {
             editText.setText(MainActivity.sp.getSpPhone());
             data = editText.getText().toString();
@@ -71,7 +74,7 @@ public class ChangePhone extends AppCompatActivity {
         });
     }
     private void updateData(){
-        retrofit2.Call<UserData> callUser = MainActivity.userService.updatePhone(MainActivity.sp.getSpId(),editText.getText().toString());
+        retrofit2.Call<UserData> callUser = loginService.updatePhone(MainActivity.sp.getSpId(),editText.getText().toString());
         callUser.enqueue(new Callback<UserData>() {
             @Override
             public void onResponse(retrofit2.Call<UserData> call, Response<UserData> response) {

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.leoky.queueeu.Activity.ChangeEmail;
@@ -20,7 +19,6 @@ import com.leoky.queueeu.Activity.ChangePhone;
 import com.leoky.queueeu.Activity.LoginActivity;
 import com.leoky.queueeu.Activity.MainActivity;
 import com.leoky.queueeu.R;
-import com.squareup.picasso.Picasso;
 
 
 /**
@@ -58,7 +56,7 @@ public class SettingFrag extends Fragment {
         btnLogout = v.findViewById(R.id.btn_logout);
 
 
-        UpdateData();
+        updateData();
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,15 +103,18 @@ public class SettingFrag extends Fragment {
         return v;
     }
 
-    private void UpdateData() {
+    private void updateData() {
         if (MainActivity.sp != null) {
-
             tvName.setText(MainActivity.sp.getSpName());
             tvEmail.setText(MainActivity.sp.getSpEmail());
             tvPhone.setText(MainActivity.sp.getSpPhone());
             tvGender.setText(MainActivity.sp.getSpGender());
-
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+    }
 }
