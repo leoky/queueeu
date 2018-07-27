@@ -1,6 +1,10 @@
 package com.leoky.queueeu.Activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QueueDetailActivity extends AppCompatActivity {
+public class QueueDetailActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     public static String KEY_NAME = "KEY_NAME";
     public static String KEY_QUEUE_ID = "KEY_QUEUE_ID";
@@ -32,9 +36,11 @@ public class QueueDetailActivity extends AppCompatActivity {
     private Button btn;
     private EditText editText;
     private ProgressDialog loading;
+    private SwipeRefreshLayout swipe;
 
     private QueueDetail queueDetail;
     private boolean isQueue;
+    private boolean isRefresh= false;
 
     private void initID(){
         tvCName = findViewById(R.id.tvCName);
@@ -45,6 +51,9 @@ public class QueueDetailActivity extends AppCompatActivity {
         img = findViewById(R.id.imgNow);
         btn = findViewById(R.id.btnQueue);
         editText = findViewById(R.id.editTextNote);
+        swipe = findViewById(R.id.swipeRefresh);
+
+        swipe.setOnRefreshListener(this);
     }
 
     @Override
@@ -60,11 +69,11 @@ public class QueueDetailActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loading = ProgressDialog.show(QueueDetailActivity.this, null, "Please wait", true, false);
                 if(isQueue){
+                    loading = ProgressDialog.show(QueueDetailActivity.this, null, "Please wait", true, false);
                     queue();
                 }else{
-                    cancel();
+                    dialog();
                 }
             }
         });
@@ -97,7 +106,8 @@ public class QueueDetailActivity extends AppCompatActivity {
         tvCName.setText(queueDetail.getDoctor().getClinic().getClinic_name());
         tvAddress.setText(queueDetail.getDoctor().getClinic().getLocation());
         tvTotalqueue.setText(queueDetail.getTotal_queue());
-        tvEta.setText("min");
+        int time = convertToInt(queueDetail.getDoctor().getClinic().getEstimate())* convertToInt(queueDetail.getTotal_queue());
+        tvEta.setText(time+" min");
         if(isQueue){
             tvNumNow.setText("");
         }else {
@@ -115,6 +125,7 @@ public class QueueDetailActivity extends AppCompatActivity {
                     if (queueDetail.getError() == null) {
                         updateView();
                         getSupportActionBar().setSubtitle(queueDetail.getDoctor().getCategory());
+                        setRefresh();
                     }
 
                 }
@@ -134,6 +145,7 @@ public class QueueDetailActivity extends AppCompatActivity {
                     if (queueDetail.getError() == null) {
                         updateView();
                         getSupportActionBar().setSubtitle(queueDetail.getDoctor().getCategory());
+                        setRefresh();
                     }
 
                 }
@@ -150,19 +162,19 @@ public class QueueDetailActivity extends AppCompatActivity {
                 MainActivity.sp.getSpName(),
                 MainActivity.sp.getSpId(),
                 queueDetail.getDoctor().getName(),
-                queueDetail.getDoctor().getId(),
+                queueDetail.getDoctor().get_id(),
                 editText.getText().toString()
         );
         call.enqueue(new Callback<QueueDetail>() {
             @Override
             public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
                 queueDetail = response.body();
-                if (queueDetail.getError() == null) {
+//                if (queueDetail.getError() == null) {
                     isQueue = false;
                     updateView();
                     setBtnOn(isQueue);
                     loading.dismiss();
-                }
+//                }
             }
 
             @Override
@@ -173,21 +185,57 @@ public class QueueDetailActivity extends AppCompatActivity {
         });
     }
     private void cancel(){
-        Call<QueueDetail> call = MainActivity.userService.cancelQueue(queueDetail.getQueue_id(),MainActivity.sp.getSpName());
-        call.enqueue(new Callback<QueueDetail>() {
+        Call<Boolean> call = MainActivity.userService.cancelQueue(queueDetail.getQueue_id(),MainActivity.sp.getSpName(),"ada la");
+        call.enqueue(new Callback<Boolean>() {
             @Override
-            public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
-                if(response.isSuccessful()){
-                    loading.dismiss();
-                    finish();
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()) {
+//                    queueDetail = response.body();
+                    if (response.body() == true) {
+                        isQueue = true;
+                        getData(isQueue);
+                        loading.dismiss();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<QueueDetail> call, Throwable t) {
+            public void onFailure(Call<Boolean> call, Throwable t) {
                 Toast.makeText(QueueDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
                 loading.dismiss();
             }
         });
     }
+
+    @Override
+    public void onRefresh() {
+            isRefresh = true;
+            getData(isQueue);
+    }
+    private int convertToInt(String s){
+        return Integer.parseInt(s);
+    }
+    private void setRefresh(){
+        if(isRefresh){
+            swipe.setRefreshing(!isRefresh);
+            isRefresh = !false;
+        }
+    }
+    private void dialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel")
+                .setMessage("Are you sure?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        loading = ProgressDialog.show(QueueDetailActivity.this, null, "Please wait", true, false);
+                        dialog.dismiss();
+                        cancel();
+                    }
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+            }
+        }).show();
+    }
+
 }

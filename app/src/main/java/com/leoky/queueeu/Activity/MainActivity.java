@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.leoky.queueeu.Api.ApiService;
-import com.leoky.queueeu.Api.service.LoginService;
 import com.leoky.queueeu.Api.service.UserService;
 import com.leoky.queueeu.Fragment.HistoryFrag;
 import com.leoky.queueeu.Fragment.HomeFrag;
@@ -31,11 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.nav);
-
         //ini api
         userService = ApiService.getClient().create(UserService.class);
         sp = new SessionManager(this);
-
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new HomeFrag(),HomeFrag.class.getSimpleName()).commit();
         }

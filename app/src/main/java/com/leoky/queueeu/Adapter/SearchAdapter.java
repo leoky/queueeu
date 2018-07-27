@@ -8,19 +8,20 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.leoky.queueeu.Api.model.Doctor;
+import com.leoky.queueeu.Api.model.Doctor_id;
 import com.leoky.queueeu.R;
 
 import java.util.List;
 
-public class SearchAdapter extends ArrayAdapter<Doctor>{
+public class SearchAdapter extends ArrayAdapter<Doctor_id>{
 
-    public SearchAdapter(Context context, List<Doctor> doctors) {
+    public SearchAdapter(Context context, List<Doctor_id> doctors) {
         super(context,0, doctors);
     }
 
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
-        Doctor doctor = getItem(position);
+        Doctor_id doctor = getItem(position);
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_search, parent, false);

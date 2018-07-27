@@ -2,13 +2,13 @@ package com.leoky.queueeu.Api.model;
 
 public class QueueDetail {
     private String queue_id;
-    private Doctor doctor;
+    private Doctor_id doctor;
     private String total_queue;
     private String note;
     private String queue_num_now;
     private String error;
 
-    public QueueDetail(String queue_id, Doctor doctor, String total_queue, String note, String queue_num_now, String error) {
+    public QueueDetail(String queue_id, Doctor_id doctor, String total_queue, String note, String queue_num_now, String error) {
         this.queue_id = queue_id;
         this.doctor = doctor;
         this.total_queue = total_queue;
@@ -25,11 +25,11 @@ public class QueueDetail {
         this.queue_id = queue_id;
     }
 
-    public Doctor getDoctor() {
+    public Doctor_id getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(Doctor_id doctor) {
         this.doctor = doctor;
     }
 

@@ -107,7 +107,7 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
             public void onResponse(Call<RepoQueue> call, Response<RepoQueue> response) {
                 RepoQueue u  = response.body();
                 lists = u.getQueue();
-                if(lists!=null){
+                if(lists!=null ){
                     initRecyclerView();
                 }
                 pb.setVisibility(View.GONE);

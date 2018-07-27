@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity {
                 searchView.setFocusable(false);
                 Intent i = new Intent(SearchActivity.this,QueueDetailActivity.class);
                 i.putExtra(QueueDetailActivity.KEY_NAME,repoSearch.getDoctor().get(position).getName());
-                i.putExtra(QueueDetailActivity.KEY_DOCTOR_ID,repoSearch.getDoctor().get(position).getId());
+                i.putExtra(QueueDetailActivity.KEY_DOCTOR_ID,repoSearch.getDoctor().get(position).get_id());
                 i.putExtra(QueueDetailActivity.KEY_MODE,QueueDetailActivity.MODE_QUEUE);
                 startActivity(i);
             }
