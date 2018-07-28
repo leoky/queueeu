@@ -5,23 +5,38 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@android:color/white"
     android:padding="@dimen/vsmall_ver_padd"
     tools:context=".Fragment.HomeFrag">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/small_ver_mar"
-        app:cardUseCompatPadding="true"
-        android:id="@+id/sv"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:background="@android:color/white">
-        <SearchView
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#c6e2ed"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-        </SearchView>
-    </android.support.v7.widget.CardView>
+            android:layout_marginBottom="@dimen/small_ver_mar"
+            app:cardUseCompatPadding="true"
+            android:id="@+id/sv"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@android:color/white">
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </SearchView>
+        </android.support.v7.widget.CardView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/homebg"/>
+    </LinearLayout>
 
 
 </LinearLayout>
