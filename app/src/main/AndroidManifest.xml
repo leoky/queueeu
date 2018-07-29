@@ -28,7 +28,8 @@
         <activity android:name=".Activity.OnProgress" />
         <activity android:name=".Activity.ChangeEmail" />
         <activity android:name=".Activity.ChangePassword" />
-        <activity android:name=".Activity.ChangePhone"></activity>
+        <activity android:name=".Activity.ChangePhone" />
+        <activity android:name=".Activity.History"></activity>
     </application>
 
 </manifest>

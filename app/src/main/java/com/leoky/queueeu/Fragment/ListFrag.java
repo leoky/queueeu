@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.leoky.queueeu.Activity.History;
+import com.leoky.queueeu.Activity.LoginActivity;
 import com.leoky.queueeu.Activity.MainActivity;
 import com.leoky.queueeu.Activity.QueueDetailActivity;
 import com.leoky.queueeu.Adapter.RVOrder;
@@ -74,7 +76,7 @@ public class ListFrag extends Fragment implements RVOrder.ClickListener{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()== R.id.history){
-            Toast.makeText(getContext(),"HIST",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(),History.class));
         }
         return super.onOptionsItemSelected(item);
     }
