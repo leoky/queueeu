@@ -19,7 +19,7 @@ public interface UserService {
 
     @FormUrlEncoded
     @POST("users/cancel/{queue_id}")
-    Call<Boolean> cancelQueue(@Path("queue_id")String queue_id,
+    Call<QueueDetail> cancelQueue(@Path("queue_id")String queue_id,
                               @Field("name")String userName,
                               @Field("reason")String reason);
 

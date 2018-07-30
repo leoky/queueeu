@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.leoky.queueeu.Activity.MainActivity;
 import com.leoky.queueeu.Activity.SearchActivity;
 import com.leoky.queueeu.R;
+import com.squareup.picasso.Picasso;
 
 
 /**

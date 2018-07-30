@@ -41,6 +41,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
     private QueueDetail queueDetail;
     private boolean isQueue;
     private boolean isRefresh= false;
+    public String queueID=null;
 
     private void initID(){
         tvCName = findViewById(R.id.tvCName);
@@ -84,7 +85,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
         }else {
             isQueue = false;
         }
-        setBtnOn(isQueue);
+
         getData(isQueue);
 
     }
@@ -95,24 +96,35 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
         return true;
     }
     private void setBtnOn(boolean mode){
-        btn.setText((mode)? R.string.btn_queue : R.string.btn_cancel);
-        btn.setBackground((mode)? getDrawable(R.drawable.custom_button_green) : getDrawable(R.drawable.custom_button_red));
-        editText.setEnabled(mode);
-
+       if(!queueDetail.getDoctor().getClinic().getStatus().equals("Closed")){
+           btn.setClickable(true);
+           btn.setText((mode)? R.string.btn_queue : R.string.btn_cancel);
+           btn.setBackground((mode)? getDrawable(R.drawable.custom_button_green) : getDrawable(R.drawable.custom_button_red));
+           editText.setEnabled(mode);
+       }else{
+           btn.setText(R.string.offline);
+           btn.setBackground(getDrawable(R.drawable.custom_button_grey));
+           btn.setClickable(false);
+       }
     }
 
     private void updateView(){
+        int estimate;
         Picasso.get().load(queueDetail.getDoctor().getPhoto()).into(img);
         tvCName.setText(queueDetail.getDoctor().getClinic().getClinic_name());
         tvAddress.setText(queueDetail.getDoctor().getClinic().getLocation());
         tvTotalqueue.setText(queueDetail.getTotal_queue());
-        int time = convertToInt(queueDetail.getDoctor().getClinic().getEstimate())* convertToInt(queueDetail.getTotal_queue());
-        tvEta.setText(time+" min");
+        estimate = convertToInt(queueDetail.getTotal_queue())* convertToInt(queueDetail.getDoctor().getClinic().getEstimate());
+        tvEta.setText(estimate+" min");
+        editText.setText(queueDetail.getNote());
         if(isQueue){
             tvNumNow.setText("");
         }else {
-            tvNumNow.setText(queueDetail.getQueue_num_now());
+            estimate = convertToInt(queueDetail.getDoctor().getClinic().getEstimate())* convertToInt(queueDetail.getQueue_num_now());
+            tvNumNow.setText((queueDetail.getQueue_num_now().equals("0")? "Your Turn" : queueDetail.getQueue_num_now() ));
+            tvEta.setText(estimate+" min");
         }
+        setBtnOn(isQueue);
     }
 
     private void getData(boolean isQueue){
@@ -136,7 +148,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
                 }
             });
         }else {
-            Call<QueueDetail> call = MainActivity.userService.getQueueNum(getIntent().getStringExtra(KEY_QUEUE_ID),
+            Call<QueueDetail> call = MainActivity.userService.getQueueNum((queueID == null)?getIntent().getStringExtra(KEY_QUEUE_ID):queueID,
                     getIntent().getStringExtra(KEY_DOCTOR_ID));
             call.enqueue(new Callback<QueueDetail>() {
                 @Override
@@ -146,6 +158,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
                         updateView();
                         getSupportActionBar().setSubtitle(queueDetail.getDoctor().getCategory());
                         setRefresh();
+
                     }
 
                 }
@@ -155,6 +168,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
                     Toast.makeText(QueueDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
     }
     private void queue(){
@@ -171,6 +185,7 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
                 queueDetail = response.body();
 //                if (queueDetail.getError() == null) {
                     isQueue = false;
+                    queueID = queueDetail.getQueue_id();
                     updateView();
                     setBtnOn(isQueue);
                     loading.dismiss();
@@ -185,22 +200,20 @@ public class QueueDetailActivity extends AppCompatActivity implements SwipeRefre
         });
     }
     private void cancel(){
-        Call<Boolean> call = MainActivity.userService.cancelQueue(queueDetail.getQueue_id(),MainActivity.sp.getSpName(),"ada la");
-        call.enqueue(new Callback<Boolean>() {
+        Call<QueueDetail> call = MainActivity.userService.cancelQueue(queueDetail.getQueue_id(),MainActivity.sp.getSpName(),"ada la");
+        call.enqueue(new Callback<QueueDetail>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(Call<QueueDetail> call, Response<QueueDetail> response) {
                 if(response.isSuccessful()) {
 //                    queueDetail = response.body();
-                    if (response.body() == true) {
                         isQueue = true;
                         getData(isQueue);
                         loading.dismiss();
-                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(Call<QueueDetail> call, Throwable t) {
                 Toast.makeText(QueueDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
                 loading.dismiss();
             }

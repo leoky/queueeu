@@ -127,4 +127,6 @@
     <string name="tv_total_queue">Total Queue</string>
     <string name="tv_on_progress">On progress</string>
 
+    <string name="offline">offline</string>
+
 </resources>
