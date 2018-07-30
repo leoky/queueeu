@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.leoky.queueeu.Activity.MainActivity;
 import com.leoky.queueeu.R;
 
 
@@ -16,7 +17,6 @@ public class HistoryFrag extends Fragment {
         // Required empty public constructor
 
         Bundle args = new Bundle();
-
         HistoryFrag fragment = new HistoryFrag();
         fragment.setArguments(args);
         return fragment;
@@ -26,6 +26,7 @@ public class HistoryFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("FAQ");
         return inflater.inflate(R.layout.fragment_history, container, false);
     }
 
