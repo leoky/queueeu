@@ -41,4 +41,7 @@ public interface UserService {
     @GET("queue/list/u/{user_id}")
     Call<RepoQueue> getQueue(@Path("user_id")String user_id);
 
+    @GET("queue/list/u/h/{user_id}")
+    Call<RepoQueue> getHistory(@Path("user_id")String user_id);
+
 }

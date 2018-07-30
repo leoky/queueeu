@@ -28,7 +28,6 @@
             android:text="Dr Name"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:padding="@dimen/vsmall_ver_padd"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -36,25 +35,24 @@
 
 
         <TextView
-            android:id="@+id/TvDate"
+            android:id="@+id/tvDate"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             android:text="Date"
-            android:padding="@dimen/small_hor_padd"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
-            app:layout_constraintBottom_toTopOf="@id/TvStatus"
+            app:layout_constraintBottom_toTopOf="@id/tvStatus"
             />
 
         <TextView
-            android:id="@+id/TvStatus"
+            android:id="@+id/tvStatus"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Online"
-            android:padding="@dimen/small_hor_padd"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
